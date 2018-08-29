@@ -201,17 +201,17 @@ class modCDav extends DolibarrModules
 									'target'=>'',
 									'user'=>0);
 
-		$this->menu[$r++] = array(	'fk_menu'=>'fk_mainmenu=agenda',			                // Put 0 if this is a top menu
-									'type'=>'left',			                // This is a Top menu entry
-									'titre'=>'CalDAVurl',
-									'mainmenu'=>'agenda',
-									'url'=>'/cdav/cdavurls.php?type=CalDAV&amp;mainmenu=agenda',
-									'langs'=>'cdav@cdav',	        // Lang file to use (without .lang) by module. File must be in langs/code_CODE/ directory.
-									'position'=>190,
-									'enabled'=>'$conf->cdav->enabled',	// Define condition to show or hide menu entry. Use '$conf->mymodule->enabled' if entry must be visible if module is enabled.
-									'perms'=>'$user->rights->agenda->myactions->read', // Use 'perms'=>'$user->rights->mymodule->level1->level2' if you want your menu with a permission rules
-									'target'=>'',
-									'user'=>0);
+		/* $this->menu[$r++] = array(	'fk_menu'=>'fk_mainmenu=agenda',			                // Put 0 if this is a top menu */
+		/* 							'type'=>'left',			                // This is a Top menu entry */
+		/* 							'titre'=>'CalDAVurl', */
+		/* 							'mainmenu'=>'agenda', */
+		/* 							'url'=>'/cdav/cdavurls.php?type=CalDAV&amp;mainmenu=agenda', */
+		/* 							'langs'=>'cdav@cdav',	        // Lang file to use (without .lang) by module. File must be in langs/code_CODE/ directory. */
+		/* 							'position'=>190, */
+		/* 							'enabled'=>'$conf->cdav->enabled',	// Define condition to show or hide menu entry. Use '$conf->mymodule->enabled' if entry must be visible if module is enabled. */
+		/* 							'perms'=>'$user->rights->agenda->myactions->read', // Use 'perms'=>'$user->rights->mymodule->level1->level2' if you want your menu with a permission rules */
+		/* 							'target'=>'', */
+		/* 							'user'=>0); */
 		
 		$this->menu[$r++] = array(	'fk_menu'=>'fk_mainmenu=agenda',			                // Put 0 if this is a top menu
 									'type'=>'left',			                // This is a Top menu entry
