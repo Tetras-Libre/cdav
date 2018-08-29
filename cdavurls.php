@@ -125,6 +125,7 @@ elseif($type=='ICS')
 
 		$sql = 'SELECT u.rowid, u.login, u.firstname, u.lastname
 			FROM '.MAIN_DB_PREFIX.'user u WHERE '.$fk_soc_fieldname.' IS NULL
+            AND rowid = '.$user->id.'
 			ORDER BY login';
 		$result = $db->query($sql);
 		while($row = $db->fetch_array($result))
