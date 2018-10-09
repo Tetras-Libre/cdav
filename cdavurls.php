@@ -125,7 +125,6 @@ elseif($type=='ICS')
 
 		$sql = 'SELECT u.rowid, u.login, u.firstname, u.lastname
 			FROM '.MAIN_DB_PREFIX.'user u WHERE '.$fk_soc_fieldname.' IS NULL
-            AND rowid = '.$user->id.'
 			ORDER BY login';
 		$result = $db->query($sql);
 		while($row = $db->fetch_array($result))
@@ -136,6 +135,12 @@ elseif($type=='ICS')
 			echo $langs->trans('NoLabel')." :\n".dol_buildpath('cdav/ics.php', 2).'?token='.base64url_encode(openssl_encrypt($row['rowid'].'+ø+nolabel', 'bf-ecb', CDAV_URI_KEY, true)).'</PRE><br/>';
 			
 		}
+        echo '<h4>'.$langs->trans('Everybody').' :</h4>';
+			
+		echo "<PRE>".$langs->trans('Full')." :\n".dol_buildpath('cdav/ics.php', 2).'?token='.base64url_encode(openssl_encrypt('0+ø+full', 'bf-ecb', CDAV_URI_KEY, true))."\n\n";
+		echo $langs->trans('NoLabel')." :\n".dol_buildpath('cdav/ics.php', 2).'?token='.base64url_encode(openssl_encrypt('0+ø+nolabel', 'bf-ecb', CDAV_URI_KEY, true)).'</PRE><br/>';
+			
+
 	}
 	else
 	{
