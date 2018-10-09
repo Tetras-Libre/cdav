@@ -53,6 +53,7 @@ if (! isset($arrTmp[1]) || ! in_array(trim($arrTmp[1]), array('nolabel', 'full')
 
 $id 	= trim($arrTmp[0]);
 $type 	= trim($arrTmp[1]);
+$code 	= trim($arrTmp[2]);
 
 header('Content-type: text/calendar; charset=utf-8');
 header('Content-Disposition: attachment; filename=Calendar-'.$id.'-'.$type.'.ics');
@@ -77,7 +78,7 @@ require_once './lib/cdav.lib.php';
 $cdavLib = new CdavLib($user, $db, $langs);
 
 //Format them
-$arrEvents = $cdavLib->getFullCalendarObjects($id, true);
+$arrEvents = $cdavLib->getFullCalendarObjects($id, true, $code);
 
 foreach($arrEvents as $event)
 {

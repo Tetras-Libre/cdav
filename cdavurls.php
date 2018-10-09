@@ -118,6 +118,16 @@ elseif($type=='ICS')
 	
 	if(isset($user->rights->agenda->allactions->read) && $user->rights->agenda->allactions->read)
 	{
+        echo '<h4>'.$langs->trans('Everybody').' :</h4>';
+			
+		echo "<PRE>".$langs->trans('Full')." :\n".dol_buildpath('cdav/ics.php', 2).'?token='.base64url_encode(openssl_encrypt('0+ø+full+ø+', 'bf-ecb', CDAV_URI_KEY, true))."\n\n";
+		echo $langs->trans('NoLabel')." :\n".dol_buildpath('cdav/ics.php', 2).'?token='.base64url_encode(openssl_encrypt('0+ø+nolabel+ø+', 'bf-ecb', CDAV_URI_KEY, true)).'</PRE><br/>';
+			
+		echo '<h4>'.$langs->trans('Holidays').' :</h4>';
+			
+		echo "<PRE>".$langs->trans('Full')." :\n".dol_buildpath('cdav/ics.php', 2).'?token='.base64url_encode(openssl_encrypt('0+ø+full+ø+AC_HOLIDAY%', 'bf-ecb', CDAV_URI_KEY, true))."\n\n";
+		echo $langs->trans('NoLabel')." :\n".dol_buildpath('cdav/ics.php', 2).'?token='.base64url_encode(openssl_encrypt('0+ø+nolabel+ø+AC_HOLIDAY%', 'bf-ecb', CDAV_URI_KEY, true)).'</PRE><br/>';
+
 		if (versioncompare(versiondolibarrarray(), array(3,7,9))>0)
 			$fk_soc_fieldname = 'fk_soc';
 		else
@@ -131,21 +141,16 @@ elseif($type=='ICS')
 		{
 			echo '<h4>'.$row['firstname'].' '.$row['lastname'].' :</h4>';
 			
-			echo "<PRE>".$langs->trans('Full')." :\n".dol_buildpath('cdav/ics.php', 2).'?token='.base64url_encode(openssl_encrypt($row['rowid'].'+ø+full', 'bf-ecb', CDAV_URI_KEY, true))."\n\n";
-			echo $langs->trans('NoLabel')." :\n".dol_buildpath('cdav/ics.php', 2).'?token='.base64url_encode(openssl_encrypt($row['rowid'].'+ø+nolabel', 'bf-ecb', CDAV_URI_KEY, true)).'</PRE><br/>';
+			echo "<PRE>".$langs->trans('Full')." :\n".dol_buildpath('cdav/ics.php', 2).'?token='.base64url_encode(openssl_encrypt($row['rowid'].'+ø+full+ø+', 'bf-ecb', CDAV_URI_KEY, true))."\n\n";
+			echo $langs->trans('NoLabel')." :\n".dol_buildpath('cdav/ics.php', 2).'?token='.base64url_encode(openssl_encrypt($row['rowid'].'+ø+nolabel+ø+', 'bf-ecb', CDAV_URI_KEY, true)).'</PRE><br/>';
 			
-		}
-        echo '<h4>'.$langs->trans('Everybody').' :</h4>';
-			
-		echo "<PRE>".$langs->trans('Full')." :\n".dol_buildpath('cdav/ics.php', 2).'?token='.base64url_encode(openssl_encrypt('0+ø+full', 'bf-ecb', CDAV_URI_KEY, true))."\n\n";
-		echo $langs->trans('NoLabel')." :\n".dol_buildpath('cdav/ics.php', 2).'?token='.base64url_encode(openssl_encrypt('0+ø+nolabel', 'bf-ecb', CDAV_URI_KEY, true)).'</PRE><br/>';
-			
+		} 
 
 	}
 	else
 	{
-		echo "<PRE>".$langs->trans('Full')." :\n".dol_buildpath('cdav/ics.php', 2).'?token='.base64url_encode(openssl_encrypt($user->id.'+ø+full', 'bf-ecb', CDAV_URI_KEY, true))."\n\n";
-		echo $langs->trans('NoLabel')." :\n".dol_buildpath('cdav/ics.php', 2).'?token='.base64url_encode(openssl_encrypt($user->id.'+ø+nolabel', 'bf-ecb', CDAV_URI_KEY, true)).'</PRE><br/>';
+		echo "<PRE>".$langs->trans('Full')." :\n".dol_buildpath('cdav/ics.php', 2).'?token='.base64url_encode(openssl_encrypt($user->id.'+ø+full+ø+', 'bf-ecb', CDAV_URI_KEY, true))."\n\n";
+		echo $langs->trans('NoLabel')." :\n".dol_buildpath('cdav/ics.php', 2).'?token='.base64url_encode(openssl_encrypt($user->id.'+ø+nolabel+ø+', 'bf-ecb', CDAV_URI_KEY, true)).'</PRE><br/>';
 	}
 
 }
