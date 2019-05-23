@@ -29,7 +29,7 @@ class CdavLib
 	 * @param int actioncomm object id
 	 * @return string
 	 */
-	public function getSqlCalEvents($calid, $oid=false, $ouri=false, $acfilter='type<>\'systemauto\'')
+	public function getSqlCalEvents($calid, $oid=false, $ouri=false, $acfilter='type<>\'systemauto\'', $allentities=0)
 	{
 		// TODO : replace GROUP_CONCAT by 
 		$sql = 'SELECT 
@@ -75,7 +75,10 @@ class CdavLib
         if($calid != 0 ) $sql .= 'AND ar.fk_element='.intval($calid);
         $sql .= ') AND a.code IN (SELECT cac.code FROM '.MAIN_DB_PREFIX.'c_actioncomm cac WHERE ';
         $sql .= 'cac.'.$acfilter;
-		$sql .= ')AND a.entity IN ('.getEntity('societe', 1).')';
+		$sql .= ')';
+		if($allentities == 0){
+			$sql .= 'AND a.entity IN ('.getEntity('societe', 1).')';
+		}
 		if($oid!==false) {
 			if($ouri===false) 
 			{
@@ -234,7 +237,8 @@ class CdavLib
 			return $calevents;
 
         if($code != ""){
-		    $sql = $this->getSqlCalEvents($calid, false, false, 'code like \''.$code.'\'');
+			# If code is specified, we show events for all entities
+		    $sql = $this->getSqlCalEvents($calid, false, false, 'code like \''.$code.'\'', 1);
         }else{
 		    $sql = $this->getSqlCalEvents($calid);
         }
